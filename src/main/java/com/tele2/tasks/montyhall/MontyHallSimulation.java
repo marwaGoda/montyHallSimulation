@@ -11,11 +11,11 @@ public class MontyHallSimulation {
         Random generator = new Random();
 
         int keepWins = simulateKeepChoice(generator, numberOfTrials);
-        System.out.println("Total Wins out of "+numberOfTrials+": "+keepWins);
+        System.out.println("Total wins if keep first choice out of "+numberOfTrials+": "+keepWins);
         System.out.println("Percent win: "+(double)keepWins/numberOfTrials);
 
         int changeWins = simulateChangeChoice(generator, numberOfTrials);
-        System.out.println("Total Wins out of "+numberOfTrials+": "+changeWins);
+        System.out.println("Total wins if change first choice out of "+numberOfTrials+": "+changeWins);
         System.out.println("Percent win: "+(double)changeWins/numberOfTrials);
     }
 
