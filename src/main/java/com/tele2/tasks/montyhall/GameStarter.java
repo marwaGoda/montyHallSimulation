@@ -1,8 +1,8 @@
 package com.tele2.tasks.montyhall;
 
-import com.tele2.tasks.montyhall.games.InteractiveMontyHallGame;
-import com.tele2.tasks.montyhall.games.MontyHallGame;
-import com.tele2.tasks.montyhall.games.PredictiveMontyHallGame;
+import com.tele2.tasks.montyhall.game.InteractiveMontyHallGame;
+import com.tele2.tasks.montyhall.game.MontyHallGame;
+import com.tele2.tasks.montyhall.game.PredictiveMontyHallGame;
 import com.tele2.tasks.montyhall.model.Box;
 import com.tele2.tasks.montyhall.model.GameSettings;
 import com.tele2.tasks.montyhall.model.GameMode;

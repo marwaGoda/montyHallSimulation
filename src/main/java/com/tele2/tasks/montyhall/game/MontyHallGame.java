@@ -1,4 +1,4 @@
-package com.tele2.tasks.montyhall.games;
+package com.tele2.tasks.montyhall.game;
 
 
 import com.tele2.tasks.montyhall.model.GameSettings;

@@ -1,4 +1,4 @@
-package com.tele2.tasks.montyhall.games;
+package com.tele2.tasks.montyhall.game;
 
 import static com.tele2.tasks.montyhall.util.GameUtil.getMoneyBox;
 import static com.tele2.tasks.montyhall.util.GameUtil.getThirdBox;

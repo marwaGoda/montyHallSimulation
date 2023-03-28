@@ -1,49 +1,51 @@
-package com.tele2.tasks.montyhall.games;
+package com.tele2.tasks.montyhall.game;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.powermock.api.mockito.PowerMockito.doReturn;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.spy;
-import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.api.support.membermodification.MemberMatcher.method;
 
 import com.tele2.tasks.montyhall.model.Box;
 import com.tele2.tasks.montyhall.model.GameSettings;
 import com.tele2.tasks.montyhall.model.Player;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import com.tele2.tasks.montyhall.model.PlayerStrategy;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Rule;
-import org.junit.jupiter.api.BeforeEach;
+import java.util.Random;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
-
-class InteractiveMontyHallGameTest {
+class PredictiveMontyHallGameTest {
 
     @Test
-    void playGame(){
+    void playGame() {
         List<Player> playerList = initializePlayers();
         List<Box> boxList = initializeBoxes();
-        MontyHallGame montyHallGame = new InteractiveMontyHallGame();
-        String input = "3\ny\n2\nn";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-
-
+        MontyHallGame predictiveMontyHallGame = new PredictiveMontyHallGame();
         GameSettings gameSettings = new GameSettings();
         gameSettings.setBoxList(boxList);
         gameSettings.setPlayerList(playerList);
-        gameSettings.setNumberOfTrials(1);
-        montyHallGame.playGame(gameSettings);
+        gameSettings.setNumberOfTrials(1000);
+        predictiveMontyHallGame.playGame(gameSettings);
         assertTrue(playerList.get(0).getWins()/1000 >= 2/3);
         assertTrue(playerList.get(1).getWins()/1000 <= 1/3);
 
+    }
+
+    @Test
+    void simulateChangeChoice() {
+        int numberOfTrials = 1000;
+        List<Box> boxList = initializeBoxes();
+        PredictiveMontyHallGame predictiveMontyHallGame = new PredictiveMontyHallGame();
+        int wins = predictiveMontyHallGame.simulateChangeChoice(new Random(), numberOfTrials, boxList);
+        assertTrue(wins/1000 >= 2/3);
+    }
+
+
+
+    @Test
+    void simulateKeepChoice() {
+        int numberOfTrials = 1000;
+        List<Box> boxList = initializeBoxes();
+        PredictiveMontyHallGame predictiveMontyHallGame = new PredictiveMontyHallGame();
+        int wins = predictiveMontyHallGame.simulateKeepChoice(new Random(), numberOfTrials, boxList);
+        assertTrue(wins/1000 <= 1/3);
     }
 
     private List<Box> initializeBoxes() {
@@ -60,9 +62,11 @@ class InteractiveMontyHallGameTest {
     private List<Player> initializePlayers(){
         Player player1 = new Player();
         player1.setName("Marwa");
+        player1.setPlayerStrategy(PlayerStrategy.KEEP_CHOICE);
 
         Player player2 = new Player();
         player2.setName("Marwa");
+        player2.setPlayerStrategy(PlayerStrategy.SWITCH_CHOICE);
 
         List<Player> playerList = new ArrayList<>();
         playerList.add(player1);
