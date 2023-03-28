@@ -1,12 +1,6 @@
 package com.tele2.tasks.montyhall.game;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.powermock.api.mockito.PowerMockito.doReturn;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.spy;
-import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.api.support.membermodification.MemberMatcher.method;
-
 import com.tele2.tasks.montyhall.model.Box;
 import com.tele2.tasks.montyhall.model.GameSettings;
 import com.tele2.tasks.montyhall.model.Player;
