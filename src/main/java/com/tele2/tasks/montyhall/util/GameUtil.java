@@ -3,7 +3,6 @@ package com.tele2.tasks.montyhall.util;
 import com.tele2.tasks.montyhall.model.Box;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public class GameUtil {
 
