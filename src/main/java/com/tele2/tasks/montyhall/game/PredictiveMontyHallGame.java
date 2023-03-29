@@ -25,11 +25,11 @@ public class PredictiveMontyHallGame implements MontyHallGame{
                 int totalWins = 0;
                 if(player.getPlayerStrategy().equals(PlayerStrategy.KEEP_CHOICE)){
                     totalWins = simulateKeepChoice(generator, numberOfTrials, boxList);
-                    System.out.println("Total wins if keep first choice out of "+numberOfTrials+": "+totalWins);
+                    System.out.println("Total wins if keep first choice " + totalWins + " out of "+numberOfTrials);
                     System.out.println("Percent win: "+(double)totalWins/numberOfTrials);
                 }else{
                     totalWins = simulateChangeChoice(generator, numberOfTrials, boxList);
-                    System.out.println("Total wins if change first choice out of "+numberOfTrials+": "+totalWins);
+                    System.out.println("Total wins if change first choice " + totalWins + " out of "+numberOfTrials);
                     System.out.println("Percent win: "+(double)totalWins/numberOfTrials);
                 }
             player.setWins(totalWins);
