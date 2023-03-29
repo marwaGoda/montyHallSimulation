@@ -23,7 +23,7 @@ public class InteractiveMontyHallGame implements MontyHallGame{
             System.out.println("It's " + player.getName() + " turn");
             int wins = 0;
             int losses = 0;
-            for (int n = 0; n < gameSettings.getNumberOfTrials(); n++) {
+            for (int index  = 0; index  < gameSettings.getNumberOfTrials(); index ++) {
                 Collections.shuffle(boxList);
                 updateBoxNumbers(boxList);
 

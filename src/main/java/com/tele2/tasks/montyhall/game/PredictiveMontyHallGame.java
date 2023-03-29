@@ -45,7 +45,7 @@ public class PredictiveMontyHallGame implements MontyHallGame{
 
         System.out.println("Player always changes his mind.");
         wins = 0;
-        for (int i = 1; i <= trials; i++) {
+        for (int index = 1; index <= trials; index++) {
             Box moneyBox = getMoneyBox(boxList).get();
             Box userBox = getBoxByNumber(rng.nextInt(3)+1, boxList).get();
             // Here, we randomly look for boxes until
@@ -66,13 +66,15 @@ public class PredictiveMontyHallGame implements MontyHallGame{
     public int simulateKeepChoice(Random rng, int trials, List<Box> boxList) {
         System.out.println("Player never changes his mind.");
         int wins = 0;
-        for (int i = 1; i <= trials; i++) {
+        for (int index = 1; index <= trials; index++) {
             Box moneyBox = getMoneyBox(boxList).get();
             Box userBox = getBoxByNumber(rng.nextInt(3)+1, boxList).get();
 
-            if (userBox == moneyBox)
+            if (userBox == moneyBox) {
                 wins++;
+            }
             Collections.shuffle(boxList);
+            updateBoxNumbers(boxList);
         }
         return wins;
     }
