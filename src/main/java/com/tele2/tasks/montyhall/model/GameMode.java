@@ -10,6 +10,7 @@ public enum GameMode {
         this.description = description;
     }
 
+    @Override
     public String toString() {
         return description;
     }

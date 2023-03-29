@@ -27,11 +27,10 @@ public class InteractiveMontyHallGame implements MontyHallGame{
                 Collections.shuffle(boxList);
                 updateBoxNumbers(boxList);
 
-                Box moneyBox = getMoneyBox(boxList).get();
+                Box moneyBox = getMoneyBox(boxList).orElse(null);
 
                 Box userBox = boxList.get(getUserFirstChoice(scanner) - 1);
-
-                Box openBox = getThirdBox(userBox, moneyBox, boxList).get();
+               Box openBox = getThirdBox(userBox, moneyBox, boxList).orElse(null);
 
                 System.out.println("\nInside box number " + openBox.getNumber() + " there are no money!");
                 System.out.println("You selected box number " + userBox.getNumber());
@@ -79,7 +78,7 @@ public class InteractiveMontyHallGame implements MontyHallGame{
 
         Box userDuplicate = userBox;
         if (userReply == YES) {
-            userBox = getThirdBox(openBox, userDuplicate, boxList).get();
+            userBox = getThirdBox(openBox, userDuplicate, boxList).orElse(null);
         }
         return userBox;
     }

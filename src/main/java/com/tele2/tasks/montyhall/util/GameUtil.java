@@ -6,35 +6,28 @@ import java.util.Optional;
 
 public class GameUtil {
 
+    public static final String MONEY = "Money";
+
     private GameUtil(){
 
     }
 
     public static Optional<Box> getThirdBox(Box firstBox, Box secondBox, List<Box> boxList){
-        for(Box box : boxList){
-            if(box.getNumber() != firstBox.getNumber() && box.getNumber() != secondBox.getNumber()){
-                return Optional.of(box);
-            }
-        }
-        return Optional.empty();
+        return boxList.stream().filter(
+                box -> (box.getNumber() != firstBox.getNumber() && box.getNumber() != secondBox.getNumber()))
+                .findFirst();
     }
 
     public static Optional<Box> getMoneyBox(List<Box> boxList){
-        for(Box box : boxList){
-            if(box.getContent().equalsIgnoreCase("Money")){
-                return Optional.of(box);
-            }
-        }
-        return Optional.empty();
+        return boxList.stream().filter(
+                box -> (box.getContent().equalsIgnoreCase(MONEY)))
+                .findFirst();
     }
 
     public static Optional<Box> getBoxByNumber(int number, List<Box> boxList){
-        for(Box box : boxList){
-            if(box.getNumber() == number){
-                return Optional.of(box);
-            }
-        }
-        return Optional.empty();
+        return boxList.stream().filter(
+                box -> (box.getNumber() == number))
+                .findFirst();
     }
 
     public static void updateBoxNumbers(List<Box> boxList){

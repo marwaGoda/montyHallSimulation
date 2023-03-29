@@ -46,13 +46,14 @@ public class PredictiveMontyHallGame implements MontyHallGame{
         System.out.println("Player always changes his mind.");
         wins = 0;
         for (int index = 1; index <= trials; index++) {
-            Box moneyBox = getMoneyBox(boxList).get();
-            Box userBox = getBoxByNumber(rng.nextInt(3)+1, boxList).get();
+            Box moneyBox = getMoneyBox(boxList).orElse(null);
+            Box userBox = getBoxByNumber(rng.nextInt(3)+1, boxList).orElse(null);
             // Here, we randomly look for boxes until
             // we find one that is wrong, yet still
             // wasn't picked by the contestant.
-            Box wrongBox = getThirdBox(moneyBox, userBox, boxList).get();
-            Box alternateBox = getThirdBox(userBox, wrongBox, boxList).get();
+            Box wrongBox = getThirdBox(moneyBox, userBox, boxList).orElse(null);
+
+            Box alternateBox = getThirdBox(userBox, wrongBox, boxList).orElse(null);
 
             // Always switch boxes!
             if (alternateBox == moneyBox)
@@ -67,8 +68,8 @@ public class PredictiveMontyHallGame implements MontyHallGame{
         System.out.println("Player never changes his mind.");
         int wins = 0;
         for (int index = 1; index <= trials; index++) {
-            Box moneyBox = getMoneyBox(boxList).get();
-            Box userBox = getBoxByNumber(rng.nextInt(3)+1, boxList).get();
+            Box moneyBox = getMoneyBox(boxList).orElse(null);
+            Box userBox = getBoxByNumber(rng.nextInt(3)+1, boxList).orElse(null);
 
             if (userBox == moneyBox) {
                 wins++;
